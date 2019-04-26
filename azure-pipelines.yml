@@ -3,13 +3,13 @@ trigger:
 - master
 
 pool:
-  vmImage: 'Ubuntu-16.04'
+  vmImage: 'win-vs2017'
 
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
-
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+- task: MSBuild@1
+  inputs:
+    solution: 'ShapeRecognizer.sln'
+    platform: 'Any CPU'
+    configuration: 'Release'
+    maximumCpuCount: true
+    restoreNugetPackages: true
