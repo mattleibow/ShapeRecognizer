@@ -3,7 +3,7 @@ trigger:
 - master
 
 pool:
-  vmImage: 'win-vs2017'
+  vmImage: 'vs2019-win2019'
 
 steps:
 - task: MSBuild@1
