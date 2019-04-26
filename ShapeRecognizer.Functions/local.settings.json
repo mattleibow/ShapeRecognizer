@@ -1,0 +1,7 @@
+{
+    "IsEncrypted": false,
+    "Values": {
+        "AzureWebJobsStorage": "DefaultEndpointsProtocol=https;AccountName=shaperecognizer;AccountKey=n3AYB/j0Q6/X2ojSYnkxbrfHT3prNbbLVYu6OfQQ5FlC3kNMscx/2kC95Oxfxct4Ngs2jualP/Hm+yfY2gA92A==;BlobEndpoint=https://shaperecognizer.blob.core.windows.net/;TableEndpoint=https://shaperecognizer.table.core.windows.net/;QueueEndpoint=https://shaperecognizer.queue.core.windows.net/;FileEndpoint=https://shaperecognizer.file.core.windows.net/",
+        "FUNCTIONS_WORKER_RUNTIME": "dotnet"
+    }
+}

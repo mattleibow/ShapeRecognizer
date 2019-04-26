@@ -1,0 +1,71 @@
+﻿<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:local="clr-namespace:ShapeRecognizer"
+             mc:Ignorable="d"
+             x:Class="ShapeRecognizer.PreviewPage">
+
+    <d:ContentPage.BindingContext>
+        <local:TrainingViewModel />
+    </d:ContentPage.BindingContext>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Train" Command="{Binding TrainCommand}" />
+    </ContentPage.ToolbarItems>
+
+    <Grid Padding="20">
+
+        <StackLayout Spacing="10">
+
+            <Label Text="What is the name of this shape?" />
+            <Entry Text="{Binding ShapeName}"
+                   Placeholder="enter shape name..."
+                   Margin="0,0,0,10" />
+
+            <Label Text="These are the images that will be used:" />
+            <ScrollView Orientation="Horizontal" Margin="-20,0,-20,0">
+                <StackLayout Orientation="Horizontal"
+                             BindableLayout.ItemsSource="{Binding Drawings}"
+                             Padding="20,0" Spacing="10">
+                    <d:BindableLayout.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:Null />
+                            <x:Null />
+                            <x:Null />
+                        </x:Array>
+                    </d:BindableLayout.ItemsSource>
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <Grid BackgroundColor="Beige">
+                                <Image Source="{Binding ., Converter={StaticResource ImageConverter}}"
+                                       d:Source="{Binding .}"
+                                       Aspect="AspectFit"
+                                       WidthRequest="200" HeightRequest="200" />
+                            </Grid>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </StackLayout>
+            </ScrollView>
+
+        </StackLayout>
+
+        <StackLayout BackgroundColor="Black"
+                     Orientation="Horizontal"
+                     VerticalOptions="End"
+                     Padding="10"
+                     Spacing="10"
+                     Margin="-20,0,-20,-20">
+            <StackLayout.Behaviors>
+                <local:SlideInBehavior IsVisible="{Binding StatusMessage, Converter={StaticResource EmptyStringInvisibilityConverter}}" />
+            </StackLayout.Behaviors>
+
+            <Label Text="{Binding StatusMessage}" d:Text="Training..."
+                   TextColor="Yellow"
+                   LineBreakMode="WordWrap"
+                   HorizontalOptions="StartAndExpand" />
+
+        </StackLayout>
+    </Grid>
+
+</ContentPage>
